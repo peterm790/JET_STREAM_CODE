@@ -80,7 +80,7 @@ for index in dic:
     format(scipy.stats.pearsonr(list(seasonal[index].bottom),list(seasonal[index].pr))[1],'.2e'),
     ]
 
-
+df = df.iloc[:,:1].join(df.iloc[:,1:].astype('float'))
 #df.set_value('model','NOAA','NOAA 20CR')
 
-df.to_csv('../../JET_STREAM_OUT/jet1D/legranddtable_simplified.csv')
+df.to_csv('../../JET_STREAM_OUT/jet1D/legranddtable_simplified.csv',float_format='%.3f')
