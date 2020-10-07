@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 dic={}
 
-filenames = glob.glob("/Users/peter/Documents/data/native/bigset/uwind/*.nc") #file locations
+filenames = glob.glob("/media/peter/C6ECF47AECF46659/data/native/bigset/uwind/*.nc") #file locations
 filenames.sort()
 models=[]
 for name in filenames:
@@ -22,10 +22,10 @@ for name in filenames:
 models.sort()
 
 models.append('NOAA')
-filenames.append('/Users/peter/Documents/data/native/bigset/uwind/NOAA/ua_NOAA_final.nc')
+filenames.append('/media/peter/C6ECF47AECF46659/data/native/bigset/uwind/NOAA/ua_NOAA_final.nc')
 
 models.append('ERA5')
-filenames.append('/Users/peter/Documents/data/native/bigset/uwind/ERA5/daily/daily_ua_ERA5_1979_2019.nc')
+filenames.append('/media/peter/C6ECF47AECF46659/data/native/bigset/uwind/ERA5/daily/daily_ua_ERA5_1979_2019.nc')
 
 
 def get_pressure_weighted(x):
@@ -142,7 +142,7 @@ def jettracker(param,levels=[85000,70000],time=['1950', '2005'],infer = np.linsp
 
 
 def postprocess(dic):
-    filenames = glob.glob("/Users/peter/Documents/data/native/subset/pr/subset*nc")
+    filenames = glob.glob("/media/peter/C6ECF47AECF46659/data/native/subset/pr/subset*nc")
     filenames.sort()
     models=[]
     for name in filenames:
@@ -158,7 +158,7 @@ def postprocess(dic):
         x = x.sel(lon=18,method='nearest')
         x = x.pr.values
         dic[model]['pr'] = x
-    x = xr.open_dataset('/Volumes/Storage2/data/NOAA_pr.nc')
+    x = xr.open_dataset('/media/peter/C6ECF47AECF46659/data/NOAA_pr.nc')
     _, index = np.unique(x['time'], return_index=True)
     x = x.isel(time=index)
     x = x.sel(time=slice('1951', '2004'))
@@ -166,7 +166,7 @@ def postprocess(dic):
     x = x.sel(lon=18,method='nearest')
     x = x.prate.values
     dic['NOAA']['pr'] = x
-    pr = xr.open_dataset('/Volumes/Storage2/data/ERA5_pr_1hr_1979-2019.nc')
+    pr = xr.open_dataset('/media/peter/C6ECF47AECF46659/data/ERA5_pr_1hr_1979-2019.nc')
     pr = pr.sel(lat=-34,method='nearest')
     pr = pr.sel(lon=18,method='nearest')
     pr = pr.sel(time=slice('1981', '2017'))
@@ -206,7 +206,7 @@ def main():
                 dic[res[0]] = res[1]
                 if len(dic)==35:
                     dic = postprocess(dic)
-                    pickle.dump(dic, open( "out.p", "wb" ))
+                    pickle.dump(dic, open( "jettrack.p", "wb" ))
                     #############pr
 
 
