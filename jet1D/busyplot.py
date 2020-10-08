@@ -14,7 +14,7 @@ def make_patch_spines_invisible(ax):
         sp.set_visible(False)
 
 
-for index in ['ERA5']:
+for index in dic:
     fig, ax1 = plt.subplots(figsize=(10,6))
     fig.subplots_adjust(right=0.75)
     ax2 = ax1.twinx()
@@ -22,13 +22,13 @@ for index in ['ERA5']:
     ax3.spines["right"].set_position(("axes", 1.18))
     make_patch_spines_invisible(ax3)
     ax3.spines["right"].set_visible(True)
-    #sns.kdeplot(list(dic[index].lat),lw=2.5,color='g', vertical=True, label='Model Latitude',ax=ax1)
+    sns.kdeplot(list(dic[index].lat),lw=2.5,color='g', vertical=True, label='Model Latitude',ax=ax1)
     for index2 in dic:
         sns.kdeplot(list(dic[index2].lat),lw=.2,color='g', vertical=True ,ax=ax1)
-    #sns.kdeplot(list(dic[index].ua),color='r', vertical=True,lw=2.5, label='Model Velocity',ax=ax2)
+    sns.kdeplot(list(dic[index].ua),color='r', vertical=True,lw=2.5, label='Model Velocity',ax=ax2)
     for index2 in dic:
         sns.kdeplot(list(dic[index2].ua),lw=.2,color='r', vertical=True ,ax=ax2)
-    #sns.kdeplot(list(dic[index].width),color='b', vertical=True,lw=2.5, label='Model Width',ax=ax3)
+    sns.kdeplot(list(dic[index].width),color='b', vertical=True,lw=2.5, label='Model Width',ax=ax3)
     for index2 in dic:
         sns.kdeplot(list(dic[index2].width),lw=.2,color='b', vertical=True ,ax=ax3)
     sns.kdeplot(list(dic['NOAA'].lat),lw=2,color='g',linestyle = ':', vertical=True,label='Reananalysis Latitude', ax = ax1)
