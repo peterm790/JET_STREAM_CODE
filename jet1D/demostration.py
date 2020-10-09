@@ -156,4 +156,4 @@ for i in range(len(dhigh.time)):
     plt.savefig('../../JET_STREAM_OUT/jet1D/demonstration/'+str(i)+'_togif.png')
     plt.close()
 
-#cat `ls -v *togif.png` | ffmpeg -framerate 12 -f image2pipe -i - output.mp4
+#cat `ls -v *togif.png` | ffmpeg -framerate 5 -f image2pipe -i - output.mp4
