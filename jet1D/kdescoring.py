@@ -8,7 +8,7 @@ import pickle
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KernelDensity
 
-dic = pickle.load( open( "daily_jettrack.p", "rb" ) )
+dic = pickle.load( open( "../../JET_STREAM_OUT/jet1D/jettrack.p", "rb" ) )
 
 
 
@@ -116,4 +116,4 @@ resultsfinal = results['DJF'] + results['MAM'] + results['JJA'] + results['SON']
 
 
 resultsfinal = resultsfinal.sort_values('lat')
-resultsfinal.to_csv('scores_seasonal_decomposed.csv')
+resultsfinal.to_csv('../../JET_STREAM_OUT/jet1D/scores.csv')
