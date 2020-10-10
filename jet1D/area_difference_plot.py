@@ -8,32 +8,7 @@ import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-dic = pickle.load( open( "CMIP5_jet_monthly.p", "rb" ) )
-#index = 'MIROC-ESM'
-timer = pd.to_datetime(dic['ACCESS1-0'].time)
-for index in dic:
-    dic[index].time = timer
-    dic[index] = dic[index].set_index('time')
-    dic[index] = dic[index].astype(float)
-    dic[index] = dic[index]['1980':'2004']
-    dic[index] = dic[index].resample('A').mean()
-
-NOAA = pickle.load( open( "NOAA_jet_monthly.p", "rb" ) )
-NOAA.time = pd.to_datetime(NOAA.time)
-NOAA = NOAA.set_index('time')
-NOAA = NOAA.astype(float)
-NOAA = NOAA['1951':'2004']
-NOAA = NOAA.resample('A').mean()
-dic['NOAA'] = NOAA
-
-
-ERA = pickle.load( open( "ERA5_jet_monthly.p", "rb" ) )
-ERA.time = pd.to_datetime(ERA.time)
-ERA = ERA.set_index('time')
-ERA = ERA.astype(float)
-ERA = ERA['1980':'2004']
-ERA = ERA.resample('A').mean()
-dic['ERA5'] = ERA
+dic = pickle.load( open( "../../JET_STREAM_OUT/jet1D/jettrack.p", "rb" ) )
 
 
 def make_patch_spines_invisible(ax):
@@ -63,5 +38,5 @@ for index in dic:
     lines1, labels1 = ax1.get_legend_handles_labels()
     ax1.legend()
     plt.title(str(index)+' Jet Latitude Area difference', fontsize=16, ha='center')
-    plt.savefig(str(index)+'/jet_latitude_area_difference.jpeg',dpi=95)
+    plt.savefig('../../JET_STREAM_OUT/jet1D/area_difference/'+str(index)+'_lat_area_difference.jpeg',dpi=95)
     plt.close()
