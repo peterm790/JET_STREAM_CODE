@@ -72,7 +72,7 @@ x = x.sel(time=slice('2000', '2000'))
 jet = jetenator(x)
 
 for i in range(len(jet.time)):
-    ax = plt.axes(projection=ccrs.Orthographic())
+    ax = plt.axes(projection=ccrs.PlateCarree())
     ax.coastlines()
     ax.contour(jet.lon,jet.lat,jet[i],colors = 'black', transform = ccrs.PlateCarree(),alpha=1)
     plt.title('HadGEM2-CC \n'+str(jet[i].time.values))
