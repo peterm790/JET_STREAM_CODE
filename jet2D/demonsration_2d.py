@@ -67,8 +67,8 @@ file = filenames[15]
 x =xr.open_dataset(file)
 x = x.rename({'__xarray_dataarray_variable__':'ws'})
 x = x.sel(plev=slice(85000.0,70000.0))
-x = get_pressure_weighted(x)
 x = x.sel(time=slice('2000', '2000'))
+x = get_pressure_weighted(x)
 jet = jetenator(x)
 
 for i in range(len(jet.time)):

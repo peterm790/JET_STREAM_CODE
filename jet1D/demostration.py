@@ -88,6 +88,8 @@ x = filenames
 index = models
 
 d = xr.open_dataset(x)
+d = d.sel(lat=slice(-60,-30))
+d = d.sel(lon=slice(-40,30))
 d = d.where(d.time==d.time[18030:18390]) # HadGEM2-CC uses silly cf time
 #d= d.sel(time=slice('1996-01-01', '1996-12-31'))
 dhigh = d.loc[dict(plev=d.plev.values[4])]
